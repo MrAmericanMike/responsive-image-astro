@@ -1,6 +1,6 @@
 # Responsive Image Astro
 
-> **Experimental package - Please refer to source code if you don't feel comfortable using it.**
+> **Experimental package - Please refer to [source code](https://github.com/MrAmericanMike/responsive-image-astro) if you don't feel comfortable using it.**
 
 ## Installation
 

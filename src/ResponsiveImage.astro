@@ -1,0 +1,42 @@
+---
+import { getImage, type LocalImageProps } from "astro:assets";
+
+interface Props extends Partial<LocalImageProps> {
+	src: ImageMetadata;
+	breakpoints: number[];
+}
+
+async function generateResponsiveImage({ src, format, breakpoints }: Omit<Props, "alt">) {
+	if (!src || !("format" in src)) {
+		throw new Error("Responsive image missing required parameter src");
+	}
+
+	if (!breakpoints || !breakpoints.length) {
+		throw new Error("Responsive image missing required parameter breakpoints");
+	}
+
+	const imageFormat = format || src.format;
+
+	const imgSrcSet = breakpoints.map(async (breakpoint) => {
+		const image = await getImage({ src, width: breakpoint, format: imageFormat });
+		return `${image.src} ${breakpoint}w`;
+	});
+
+	const imgSrc = await getImage({ src, width: Math.max(...breakpoints), format: imageFormat });
+
+	return {
+		srcSet: await Promise.all(imgSrcSet),
+		imgSrc: imgSrc.src
+	};
+}
+
+const { src, breakpoints, format } = Astro.props;
+const { srcSet, imgSrc } = await generateResponsiveImage({ src, breakpoints, format });
+const PROPS: any = Astro.props;
+
+delete PROPS.src;
+delete PROPS.breakpoints;
+delete PROPS.format;
+---
+
+<img {...PROPS} src={imgSrc} srcset={srcSet.join(", ")} />

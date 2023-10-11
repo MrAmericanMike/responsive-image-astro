@@ -16,9 +16,9 @@ pnpm install responsive-image-astro
 yarn install responsive-image-astro
 ```
 
-## Usage
+## ResponsiveImage Usage
 
-### Import the component and the image to be displayed
+### Import the ResponsiveImage component and the image to be displayed
 
 ```js
 ---
@@ -55,6 +55,34 @@ Example:
 		/assets/world.73e46027_Z27BBCr.avif 600w,
 		/assets/world.73e46027_WMMQ4.avif   800w
 	" />
+```
+
+## ResponsiveRemoteImage Usage
+
+### Import the ResponsiveRemoteImage component
+
+```js
+---
+import ResponsiveRemoteImage from "responsive-image-astro";
+---
+```
+
+### Component has 4 required parameters:
+
+-   `src` (Image source URL type `<string>`)
+-   `width` (Image width type `<number>`)
+-   `height` (Image height type `<number>`)
+-   `breakpoints` (Numbers array of the 'breakpoints' to generate the srcset for)
+
+*   Optionally you can pass other parameters like `alt`, `format`, `class` and so on. This are present on the type `<RemoteImageProps>`
+
+```astro
+<ResponsiveRemoteImage
+	src="https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg"
+	breakpoints={[400, 800, 1600, 2400]}
+	width={2400}
+	height={1200}
+/>
 ```
 
 ## **Work In Progress**

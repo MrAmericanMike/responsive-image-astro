@@ -28,7 +28,7 @@
 		"astro": "^3.2.3"
 	},
 	"peerDependencies": {
-		"astro": "^2.0.0-beta.0"
+		"astro": "^3.0.0"
 	},
 	"license": "MIT",
 	"homepage": "https://github.com/MrAmericanMike/responsive-image-astro#readme",

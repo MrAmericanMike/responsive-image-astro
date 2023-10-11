@@ -1,0 +1,54 @@
+---
+import type { ImageOutputFormat } from "astro";
+import { getImage, type RemoteImageProps } from "astro:assets";
+
+interface Props extends Partial<RemoteImageProps> {
+	format?: ImageOutputFormat;
+	breakpoints: number[];
+	width: number;
+	height: number;
+}
+
+async function generateResponsiveImage({ src, format, breakpoints, width, height }: Omit<Props, "alt">) {
+	if (!src) {
+		throw new Error("Responsive remote image missing required parameter src");
+	}
+
+	if (!breakpoints || !breakpoints.length) {
+		throw new Error("Responsive remote image missing required parameter breakpoints");
+	}
+
+	const imageFormat = format || "webp";
+
+	const imgSrcSet = breakpoints.map(async (breakpoint) => {
+		const HEIGHT = (breakpoint * height) / width;
+		const image = await getImage({
+			src,
+			width: breakpoint,
+			height: HEIGHT,
+			format: imageFormat
+		});
+		return `${image.src} ${breakpoint}w`;
+	});
+	const imgSrc = await getImage({
+		src,
+		width,
+		height,
+		format: imageFormat
+	});
+	return {
+		srcSet: await Promise.all(imgSrcSet),
+		imgSrc: imgSrc.src
+	};
+}
+
+const { src, breakpoints, format, width, height } = Astro.props;
+const { srcSet, imgSrc } = await generateResponsiveImage({ src, breakpoints, format, width, height });
+const PROPS: any = Astro.props;
+
+delete PROPS.src;
+delete PROPS.breakpoints;
+delete PROPS.format;
+---
+
+<img {...PROPS} src={imgSrc} srcset={srcSet.join(", ")} />

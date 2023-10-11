@@ -22,7 +22,7 @@ yarn install responsive-image-astro
 
 ```js
 ---
-import ResponsiveImage from "responsive-image-astro";
+import { ResponsiveImage } from "responsive-image-astro";
 import world from "../assets/world.jpg";
 ---
 ```
@@ -63,7 +63,7 @@ Example:
 
 ```js
 ---
-import ResponsiveRemoteImage from "responsive-image-astro";
+import { ResponsiveRemoteImage } from "responsive-image-astro";
 ---
 ```
 

@@ -16,6 +16,20 @@ pnpm install responsive-image-astro
 yarn install responsive-image-astro
 ```
 
+## NOTE: sharp needs to be installed into the project
+
+```sh
+npm instal sharp
+```
+
+```sh
+pnpm instal sharp
+```
+
+```sh
+yarn instal sharp
+```
+
 ## ResponsiveImage Usage
 
 ### Import the ResponsiveImage component and the image to be displayed

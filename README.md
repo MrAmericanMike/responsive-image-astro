@@ -99,6 +99,18 @@ import { ResponsiveRemoteImage } from "responsive-image-astro";
 />
 ```
 
+## External images
+
+For images from external sources to be processed and downloaded at build time, add the domains to your Astro configs. Read more [here](https://docs.astro.build/en/guides/images/#authorizing-remote-images)
+
+```js
+export default defineConfig({
+	image: {
+		domains: ["images.pexels.com"]
+	}
+});
+```
+
 ## **Work In Progress**
 
 There is still a lot to do and test and add...

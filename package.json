@@ -1,6 +1,6 @@
 {
 	"name": "responsive-image-astro",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"type": "module",
 	"exports": {
 		".": "./index.ts"
@@ -15,6 +15,9 @@
 		"responsive-image-astro",
 		"responsive-image-component",
 		"responsive-image",
+		"responsive-remote-image-astro",
+		"responsive-remote-image-component",
+		"responsive-remote-image",
 		"responsive",
 		"image",
 		"astro",

@@ -16,23 +16,23 @@ pnpm install responsive-image-astro
 yarn install responsive-image-astro
 ```
 
-## NOTE: sharp needs to be installed into the project
+### NOTE: sharp needs to be installed too
 
 ```sh
-npm instal sharp
+npm install sharp
 ```
 
 ```sh
-pnpm instal sharp
+pnpm install sharp
 ```
 
 ```sh
-yarn instal sharp
+yarn install sharp
 ```
 
 ## ResponsiveImage Usage
 
-### Import the ResponsiveImage component and the image to be displayed
+### Import the `ResponsiveImage` component and the image to be displayed
 
 ```js
 ---
@@ -41,7 +41,7 @@ import world from "../assets/world.jpg";
 ---
 ```
 
-### Component has 2 required parameters:
+### `ResponsiveImage` Component has 2 required parameters:
 
 -   `src` (An import of the image to be used of type `<ImageMetadata>`)
 -   `breakpoints` (Numbers array of the 'breakpoints' to generate the srcset for)
@@ -73,7 +73,7 @@ Example:
 
 ## ResponsiveRemoteImage Usage
 
-### Import the ResponsiveRemoteImage component
+### Import the `ResponsiveRemoteImage` component
 
 ```js
 ---
@@ -81,12 +81,12 @@ import { ResponsiveRemoteImage } from "responsive-image-astro";
 ---
 ```
 
-### Component has 4 required parameters:
+### `ResponsiveRemoteImage` Component has 4 required parameters:
 
 -   `src` (Image source URL type `<string>`)
+-   `breakpoints` (Numbers array of the 'breakpoints' to generate the srcset for)
 -   `width` (Image width type `<number>`)
 -   `height` (Image height type `<number>`)
--   `breakpoints` (Numbers array of the 'breakpoints' to generate the srcset for)
 
 *   Optionally you can pass other parameters like `alt`, `format`, `class` and so on. This are present on the type `<RemoteImageProps>`
 
@@ -101,7 +101,8 @@ import { ResponsiveRemoteImage } from "responsive-image-astro";
 
 ## External images
 
-For images from external sources to be processed and downloaded at build time, add the domains to your Astro configs. Read more [here](https://docs.astro.build/en/guides/images/#authorizing-remote-images)
+For images from external sources to be processed and downloaded at build time, add the domains to your Astro configs.
+Read more [here](https://docs.astro.build/en/guides/images/#authorizing-remote-images)
 
 ```js
 export default defineConfig({

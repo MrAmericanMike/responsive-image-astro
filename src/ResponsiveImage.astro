@@ -2,6 +2,7 @@
 import { getImage, type LocalImageProps } from "astro:assets";
 
 interface Props extends Partial<LocalImageProps> {
+	src: ImageMetadata;
 	breakpoints: number[];
 }
 

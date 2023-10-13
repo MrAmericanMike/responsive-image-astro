@@ -2,13 +2,13 @@
 import type { ImageOutputFormat } from "astro";
 import { getImage, type RemoteImageProps } from "astro:assets";
 
-interface Props extends Partial<RemoteImageProps> {
+type Props = RemoteImageProps & {
 	src: string;
 	format?: ImageOutputFormat;
 	breakpoints: number[];
 	width: number;
 	height: number;
-}
+};
 
 async function generateResponsiveImage({ src, format, breakpoints, width, height }: Omit<Props, "alt">) {
 	if (!src) {

@@ -1,10 +1,10 @@
 ---
 import { getImage, type LocalImageProps } from "astro:assets";
 
-interface Props extends Partial<LocalImageProps> {
+type Props = LocalImageProps & {
 	src: ImageMetadata;
 	breakpoints: number[];
-}
+};
 
 async function generateResponsiveImage({ src, format, breakpoints }: Omit<Props, "alt">) {
 	if (!src || !("format" in src)) {

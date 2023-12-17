@@ -1,6 +1,6 @@
 {
 	"name": "responsive-image-astro",
-	"version": "0.0.8",
+	"version": "0.1.0",
 	"type": "module",
 	"exports": {
 		".": "./index.ts"
@@ -26,9 +26,6 @@
 	"scripts": {},
 	"devDependencies": {
 		"astro": "^3.2.3"
-	},
-	"peerDependencies": {
-		"astro": "^3.0.0"
 	},
 	"license": "MIT",
 	"homepage": "https://github.com/MrAmericanMike/responsive-image-astro#readme",

@@ -4,9 +4,10 @@ import { getImage, type LocalImageProps } from "astro:assets";
 type Props = LocalImageProps & {
 	src: ImageMetadata;
 	breakpoints: number[];
+	quality?: number;
 };
 
-async function generateResponsiveImage({ src, format, breakpoints }: Omit<Props, "alt">) {
+async function generateResponsiveImage({ src, format, breakpoints, quality }: Omit<Props, "alt">) {
 	if (!src || !("format" in src)) {
 		throw new Error("Responsive image missing required parameter src");
 	}
@@ -18,11 +19,11 @@ async function generateResponsiveImage({ src, format, breakpoints }: Omit<Props,
 	const imageFormat = format || src.format;
 
 	const imgSrcSet = breakpoints.map(async (breakpoint) => {
-		const image = await getImage({ src, width: breakpoint, format: imageFormat });
+		const image = await getImage({ src, width: breakpoint, format: imageFormat, quality });
 		return `${image.src} ${breakpoint}w`;
 	});
 
-	const imgSrc = await getImage({ src, width: Math.max(...breakpoints), format: imageFormat });
+	const imgSrc = await getImage({ src, width: Math.max(...breakpoints), format: imageFormat, quality });
 
 	return {
 		srcSet: await Promise.all(imgSrcSet),
@@ -30,13 +31,14 @@ async function generateResponsiveImage({ src, format, breakpoints }: Omit<Props,
 	};
 }
 
-const { src, breakpoints, format } = Astro.props;
-const { srcSet, imgSrc } = await generateResponsiveImage({ src, breakpoints, format });
+const { src, breakpoints, format, quality } = Astro.props;
+const { srcSet, imgSrc } = await generateResponsiveImage({ src, breakpoints, format, quality });
 const PROPS: any = Astro.props;
 
 delete PROPS.src;
 delete PROPS.breakpoints;
 delete PROPS.format;
+delete PROPS.quality;
 ---
 
 <img {...PROPS} src={imgSrc} srcset={srcSet.join(", ")} />
